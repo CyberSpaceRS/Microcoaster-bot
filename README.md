@@ -29,4 +29,4 @@ For any questions or contributions, open an issue or contact the MicroCoaster™
 ## License
 
 This project is licensed under the [MIT License](./LICENSE).
-You are free to use, modify, and distribute this software — see the `LICENSE` file for details.
+You are free to use, modify, and distribute this software
