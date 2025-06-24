@@ -5,8 +5,6 @@
  * Il affiche un message stylisé et lance les tâches planifiées.
  */
 
-const launchSchedulers = require("../utils/schedulerLauncher");
-
 module.exports = {
   name: "ready",
   once: true,
