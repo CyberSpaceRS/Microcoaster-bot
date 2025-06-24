@@ -31,7 +31,5 @@ module.exports = {
       `\x1b[0m✅  Connecté en tant que \x1b[38;5;45m${client.user.tag}\x1b[0m (\x1b[38;5;45m${client.user.id}\x1b[0m)`,
     );
 
-    // Lancer les tâches planifiées comme le rappel de garantie, nettoyage des tickets, etc.
-    launchSchedulers(client);
   },
 };
