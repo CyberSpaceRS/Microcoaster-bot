@@ -23,16 +23,14 @@ module.exports = {
 \x1b[38;2;255;200;0m 8    Y     888   888  888   .o8  888     888   888     \`88b    ooo  888   888 d8(  888  o.  )88b   888 . 888    .o  888     
 \x1b[38;2;255;220;0mo8o        o888o o888o \`Y8bod8P' d888b    \`Y8bod8P'      \`Y8bood8P'  \`Y8bod8P' \`Y888""8o 8""888P'   "888" \`Y8bod8P' d888b\x1b[0m
 
-
-
-
       🎢 MicroCoaster Discord Bot prêt !
-      🔗 https://github.com/CyberSpaceRS/Microcoaster-bot
+      🔗 https://github.com/TON_GITHUB/MicroCoaster-Discord-Bot
     `);
 
     console.log(
       `\x1b[0m✅  Connecté en tant que \x1b[38;5;45m${client.user.tag}\x1b[0m (\x1b[38;5;45m${client.user.id}\x1b[0m)`,
     );
 
+    // Lancer les tâches planifiées comme le rappel de garantie, nettoyage des tickets, etc.
   },
 };
