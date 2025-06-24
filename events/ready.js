@@ -26,6 +26,8 @@ module.exports = {
 
 
 
+
+
       🎢 MicroCoaster Discord Bot prêt !
       🔗 https://github.com/CyberSpaceRS/Microcoaster-bot
     `);
