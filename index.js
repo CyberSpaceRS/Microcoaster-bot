@@ -17,7 +17,7 @@ const { initializeDatabase } = require("./utils/dbInit");
     // Attendre l'initialisation de la base (création des tables, etc.)
     await initializeDatabase();
 
-    // Créez une instance du bot
+    // Créer une instance du bot
     const client = new Client({
       intents: [
         GatewayIntentBits.Guilds,
@@ -43,32 +43,30 @@ const { initializeDatabase } = require("./utils/dbInit");
         client.commands.set(command.data.name, command);
         commands.push(command.data.toJSON());
         console.log(
-          `📜\x1b[38;5;4m  Chargement de la commande ${command.data.name} \x1b[0m`,
+          `📜\x1b[38;5;4m  Chargement de la commande ${command.data.name} \x1b[0m`
         );
       } else {
         console.error(
-          `⚠️ \x1b[38;5;1m  Erreur: La commande dans le fichier ${file} est invalide ou n'a pas de nom. \x1b[0m`,
+          `⚠️ \x1b[38;5;1m  Erreur: La commande dans le fichier ${file} est invalide ou n'a pas de nom. \x1b[0m`
         );
       }
     }
 
     // Charger les événements
     const eventsPath = path.join(__dirname, "events");
-    const eventFiles = fs
-      .readdirSync(eventsPath)
-      .filter((file) => file.endsWith(".js"));
+    const eventFiles = fs.readdirSync(eventsPath).filter((file) => file.endsWith(".js"));
     for (const file of eventFiles) {
       const filePath = path.join(eventsPath, file);
       const event = require(filePath);
       if (event.once) {
         client.once(event.name, (...args) => event.execute(...args, client));
         console.log(
-          `📜\x1b[38;5;5m  Chargement de l'événement ${event.name} (once) \x1b[0m`,
+          `📜\x1b[38;5;5m  Chargement de l'événement ${event.name} (once) \x1b[0m`
         );
       } else {
         client.on(event.name, (...args) => event.execute(...args, client));
         console.log(
-          `📜\x1b[38;5;5m  Chargement de l'événement ${event.name} \x1b[0m`,
+          `📜\x1b[38;5;5m  Chargement de l'événement ${event.name} \x1b[0m`
         );
       }
     }
@@ -84,7 +82,7 @@ const { initializeDatabase } = require("./utils/dbInit");
     } catch (error) {
       console.error(
         "⚠️\x1b[38;5;1m  Erreur lors de la récupération des commandes enregistrées: \x1b[0m",
-        error,
+        error
       );
     }
 
@@ -93,15 +91,15 @@ const { initializeDatabase } = require("./utils/dbInit");
       if (!client.commands.has(registeredCommand.name)) {
         try {
           await rest.delete(
-            `${Routes.applicationCommands(clientId)}/${registeredCommand.id}`,
+            `${Routes.applicationCommands(clientId)}/${registeredCommand.id}`
           );
           console.log(
-            `📍\x1b[38;5;3m  Suppression de la commande obsolète: ${registeredCommand.name} \x1b[0m`,
+            `📍\x1b[38;5;3m  Suppression de la commande obsolète: ${registeredCommand.name} \x1b[0m`
           );
         } catch (error) {
           console.error(
             `⚠️\x1b[38;5;1m  Erreur lors de la suppression de la commande ${registeredCommand.name}: \x1b[0m`,
-            error,
+            error
           );
         }
       }
@@ -110,22 +108,20 @@ const { initializeDatabase } = require("./utils/dbInit");
     // Enregistrer (ou mettre à jour) les commandes auprès de Discord
     try {
       await rest.put(Routes.applicationCommands(clientId), { body: commands });
-      console.log(
-        "📩\x1b[38;5;2m  Commandes enregistrées avec succès. \x1b[0m",
-      );
+      console.log("📩\x1b[38;5;2m  Commandes enregistrées avec succès. \x1b[0m");
     } catch (error) {
       console.error(
         "⚠️\x1b[38;5;1m  Erreur lors de l'enregistrement des commandes: \x1b[0m",
-        error,
+        error
       );
     }
 
-    // Lancer le bot
+    // Connexion du bot
     client.login(process.env.TOKEN);
   } catch (err) {
     console.error(
       "⚠️\x1b[38;5;1m  Erreur lors de l'initialisation de la base de données ou du bot:",
-      err,
+      err
     );
     process.exit(1);
   }
